@@ -77,6 +77,7 @@ bool q_insert_head(queue_t *q, char *s)
     size_t len = (strlen(s) + 1);
     newh->value = malloc(len);
     if (!(newh->value)) {
+        free(newh);
         return false;
     }
     memcpy(newh->value, s, len);
@@ -115,6 +116,7 @@ bool q_insert_tail(queue_t *q, char *s)
     size_t len = (strlen(s) + 1);
     newt->value = malloc(len);
     if (!(newt->value)) {
+        free(newt);
         return false;
     }
     memcpy(newt->value, s, len);
