@@ -26,10 +26,11 @@ typedef struct ELE {
 /* Queue structure */
 typedef struct {
     list_ele_t *head; /* Linked list of elements */
-                      /*
+    list_ele_t *tail; /*
                         You will need to add more fields to this structure
                         to efficiently implement q_size and q_insert_tail
                       */
+    size_t size;
 } queue_t;
 
 /************** Operations on queue ************************/
@@ -63,6 +64,18 @@ bool q_insert_head(queue_t *q, char *s);
   The function must explicitly allocate space and copy the string into it.
  */
 bool q_insert_tail(queue_t *q, char *s);
+
+/*
+  Check if queue is empty
+  Return true if is empty.
+  Return false in other circumstances
+ */
+static inline bool q_is_empty(queue_t *q)
+{
+    /* Check twice to avoid we only revised one of them when we call this func
+     */
+    return (!(q->head) && q->size == 0);
+}
 
 /*
   Attempt to remove element from head of queue.
