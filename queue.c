@@ -157,6 +157,9 @@ bool q_remove_head(queue_t *q, char *sp, size_t bufsize)
     free(old_head->value);
     free(old_head);
     q->size--;
+    if (q_is_empty(q)) {
+        q->tail = NULL;
+    }
     return true;
 }
 
